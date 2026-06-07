@@ -89,7 +89,7 @@
     </form>
     <p class="thanks" id="thanks" hidden>Thanks! We've added you to our list.</p>
 
-    <p class="contact"><a href="mailto:info@exclosure.io">info@exclosure.io</a></p>
+    <p class="contact"><a id="contact-link" href="#">email</a></p>
 
     <div class="social">
       <a href="https://twitter.com/TheExclosure" aria-label="Twitter"><img src="/img/twitter.png" alt="Twitter" /></a>
@@ -104,13 +104,27 @@
   </main>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Lightly obfuscate the address so plain scrapers don't grab it from source.
+    function rot13(s) {
+      return s.replace(/[a-z]/gi, function (c) {
+        var base = c <= "Z" ? 65 : 97;
+        return String.fromCharCode(((c.charCodeAt(0) - base + 13) % 26) + base);
+      });
+    }
+    var contactEmail = rot13("vasb@rkpybfher.vb"); // -> info@exclosure.io
+
+    var contactLink = document.getElementById("contact-link");
+    contactLink.href = "mailto:" + contactEmail;
+    contactLink.textContent = contactEmail;
+
     document.getElementById("signup").addEventListener("submit", function (e) {
       e.preventDefault();
       var email = document.getElementById("email").value.trim();
       if (!email) return;
       var subject = encodeURIComponent("Subscribe");
       var body = encodeURIComponent("Please add me to your list: " + email);
-      window.location.href = "mailto:info@exclosure.io?subject=" + subject + "&body=" + body;
+      window.location.href = "mailto:" + contactEmail + "?subject=" + subject + "&body=" + body;
       document.getElementById("signup").hidden = true;
       document.getElementById("thanks").hidden = false;
     });
