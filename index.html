@@ -32,17 +32,28 @@
       padding: 2rem 1.25rem 3rem;
       text-align: center;
     }
-    .hero img { width: 100%; height: auto; display: block; border-radius: 4px; }
-    .logo { max-width: 320px; width: 60%; height: auto; margin: 2.5rem auto 1.5rem; display: block; }
+    .banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .logo-img { flex: 1 1 360px; max-width: 520px; width: 100%; height: auto; border-radius: 4px; }
+    .cta { flex: 1 1 260px; max-width: 320px; text-align: left; }
     a { color: var(--accent); }
+
+    .tagline { font-size: 1.1rem; font-style: italic; margin: 0 0 0.4rem; color: var(--ink); }
+    .request { margin: 0 0 1rem; font-weight: 600; }
+    .request a { text-decoration: none; }
+    .request a:hover { text-decoration: underline; }
 
     .signup {
       display: flex;
       gap: 0.5rem;
-      justify-content: center;
       flex-wrap: wrap;
-      margin: 1.5rem auto 1rem;
-      max-width: 480px;
+      margin: 0 0 1rem;
     }
     .signup input {
       flex: 1 1 240px;
@@ -77,19 +88,19 @@
 </head>
 <body>
   <main>
-    <div class="hero">
-      <img src="/img/header.png" alt="Exclosure" />
+    <div class="banner">
+      <img class="logo-img" src="/img/header.png" alt="Exclosure" />
+      <div class="cta">
+        <p class="tagline">Tasteful, discreet SDA services.</p>
+        <p class="request"><a id="request-link" href="#">Request contact &rarr;</a></p>
+        <form class="signup" id="signup">
+          <input type="email" id="email" name="email" placeholder="Enter your email here *" required />
+          <button type="submit">Submit</button>
+        </form>
+        <p class="thanks" id="thanks" hidden>Thanks! We've added you to our list.</p>
+        <p class="contact"><a id="contact-link" href="#">email</a></p>
+      </div>
     </div>
-
-    <img class="logo" src="/img/logo.png" alt="Exclosure" />
-
-    <form class="signup" id="signup">
-      <input type="email" id="email" name="email" placeholder="Enter your email here *" required />
-      <button type="submit">Submit</button>
-    </form>
-    <p class="thanks" id="thanks" hidden>Thanks! We've added you to our list.</p>
-
-    <p class="contact"><a id="contact-link" href="#">email</a></p>
 
     <div class="social">
       <a href="https://twitter.com/TheExclosure" aria-label="Twitter"><img src="/img/twitter.png" alt="Twitter" /></a>
@@ -117,6 +128,9 @@
     var contactLink = document.getElementById("contact-link");
     contactLink.href = "mailto:" + contactEmail;
     contactLink.textContent = contactEmail;
+
+    document.getElementById("request-link").href =
+      "mailto:" + contactEmail + "?subject=" + encodeURIComponent("Request contact");
 
     document.getElementById("signup").addEventListener("submit", function (e) {
       e.preventDefault();
