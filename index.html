@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home | Exclosure</title>
+  <meta name="description" content="Exclosure" />
+  <meta property="og:title" content="Exclosure" />
+  <meta property="og:image" content="https://exclosure.io/img/header.png" />
+  <link rel="icon" href="/img/logo.png" />
+  <style>
+    :root { --ink: #111; --muted: #555; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.5;
+    }
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+      text-align: center;
+    }
+    .hero img { width: 100%; height: auto; display: block; border-radius: 4px; }
+    .logo { max-width: 320px; width: 60%; height: auto; margin: 2.5rem auto 1.5rem; display: block; }
+    a { color: var(--ink); }
+    .contact { font-size: 1.05rem; margin: 1rem 0 2rem; }
+    .social { display: flex; gap: 1.25rem; justify-content: center; margin: 1.5rem 0; }
+    .social img { width: 28px; height: 28px; }
+    footer { color: var(--muted); font-size: 0.85rem; margin-top: 2.5rem; }
+    footer a { color: var(--muted); }
+    .naics { margin-top: 0.5rem; word-spacing: 0.15rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="hero">
+      <img src="/img/header.png" alt="Exclosure" />
+    </div>
+
+    <img class="logo" src="/img/logo.png" alt="Exclosure" />
+
+    <p class="contact"><a href="mailto:info@exclosure.io">info@exclosure.io</a></p>
+
+    <div class="social">
+      <a href="https://twitter.com/TheExclosure" aria-label="Twitter"><img src="/img/twitter.png" alt="Twitter" /></a>
+      <a href="https://www.linkedin.com/company/exclosure/" aria-label="LinkedIn"><img src="/img/linkedin.png" alt="LinkedIn" /></a>
+    </div>
+
+    <footer>
+      <p><a href="/legal.html">Legal</a></p>
+      <p>&copy;<span id="year">2026</span> by Exclosure</p>
+      <p class="naics">NAICS 334511, 513210, 541330, 541370, 541511, 541519, 541715, 541990</p>
+    </footer>
+  </main>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
