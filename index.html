@@ -112,7 +112,7 @@
         return String.fromCharCode(((c.charCodeAt(0) - base + 13) % 26) + base);
       });
     }
-    var contactEmail = rot13("vasb@rkpybfher.vb"); // -> info@exclosure.io
+    var contactEmail = rot13("vasb@rkpybfher.vb");
 
     var contactLink = document.getElementById("contact-link");
     contactLink.href = "mailto:" + contactEmail;
