@@ -7,15 +7,23 @@
   <meta name="description" content="Exclosure" />
   <meta property="og:title" content="Exclosure" />
   <meta property="og:image" content="https://exclosure.io/img/header.png" />
+  <meta name="theme-color" content="#0b1226" />
   <link rel="icon" href="/img/logo.png" />
   <style>
-    :root { --ink: #111; --muted: #555; }
+    :root {
+      --bg: #0b1226;
+      --ink: #e8ecf5;
+      --muted: #8a93ad;
+      --accent: #6ca8e0;
+      --field: #131c36;
+      --border: #2a3556;
+    }
     * { box-sizing: border-box; }
+    html, body { background: var(--bg); }
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       color: var(--ink);
-      background: #fff;
       line-height: 1.5;
     }
     main {
@@ -26,8 +34,40 @@
     }
     .hero img { width: 100%; height: auto; display: block; border-radius: 4px; }
     .logo { max-width: 320px; width: 60%; height: auto; margin: 2.5rem auto 1.5rem; display: block; }
-    a { color: var(--ink); }
-    .contact { font-size: 1.05rem; margin: 1rem 0 2rem; }
+    a { color: var(--accent); }
+
+    .signup {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 1.5rem auto 1rem;
+      max-width: 480px;
+    }
+    .signup input {
+      flex: 1 1 240px;
+      min-width: 0;
+      padding: 0.6rem 0.8rem;
+      font-size: 1rem;
+      color: var(--ink);
+      background: var(--field);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .signup input::placeholder { color: var(--muted); }
+    .signup input:focus { outline: none; border-color: var(--accent); }
+    .signup button {
+      padding: 0.6rem 1.4rem;
+      font-size: 1rem;
+      color: var(--bg);
+      background: var(--ink);
+      border: 0;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .signup button:hover { background: #fff; }
+    .thanks { color: var(--accent); margin: 1rem 0; }
+    .contact { font-size: 1.05rem; margin: 0.5rem 0 2rem; }
     .social { display: flex; gap: 1.25rem; justify-content: center; margin: 1.5rem 0; }
     .social img { width: 28px; height: 28px; }
     footer { color: var(--muted); font-size: 0.85rem; margin-top: 2.5rem; }
@@ -43,6 +83,12 @@
 
     <img class="logo" src="/img/logo.png" alt="Exclosure" />
 
+    <form class="signup" id="signup">
+      <input type="email" id="email" name="email" placeholder="Enter your email here *" required />
+      <button type="submit">Submit</button>
+    </form>
+    <p class="thanks" id="thanks" hidden>Thanks! We've added you to our list.</p>
+
     <p class="contact"><a href="mailto:info@exclosure.io">info@exclosure.io</a></p>
 
     <div class="social">
@@ -56,6 +102,18 @@
       <p class="naics">NAICS 334511, 513210, 541330, 541370, 541511, 541519, 541715, 541990</p>
     </footer>
   </main>
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("signup").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var email = document.getElementById("email").value.trim();
+      if (!email) return;
+      var subject = encodeURIComponent("Subscribe");
+      var body = encodeURIComponent("Please add me to your list: " + email);
+      window.location.href = "mailto:info@exclosure.io?subject=" + subject + "&body=" + body;
+      document.getElementById("signup").hidden = true;
+      document.getElementById("thanks").hidden = false;
+    });
+  </script>
 </body>
 </html>
